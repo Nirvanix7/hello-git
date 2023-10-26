@@ -1,0 +1,24 @@
+ 
+GIT HUB
+
+* Sirve para tener nuestro codigo en la nube
+* Es la representacion de un proyecto en el que trabajamos con git, pero en la nube
+* Los proyectos se pueden crear directamente en github, o en git y despues subirlo a github
+* Al modificar un repositorio tendremos varias opciones en la cinta
+    + code
+    + issues: si alguien tenga incidencias abiertas
+    + pull request: que alguien enviara codigo para meterlo en nuestro repositorio
+    + actions
+    + projects
+    + wiki
+* Estudiar markdowns: es una forma de escritura que permtie dejar de mejor manera texto escrito
+    + Poner titulos, subtitulos, negritas, etc etc
+
+* https://docs.github.com/es/get-started/quickstart
+
+
+COMANDOS
+
+Agregar la carpeta al repositorio github /hello-git es el nombre del repositorio que peude cambiar
+- git remote add origin https://github.com/Nirvanix7/hello-git.git
+- git push -u origin main  -> subir el archivo a github
