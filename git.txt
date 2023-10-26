@@ -1,0 +1,99 @@
+GIT
+https://git-scm.com/
+
+PARA TODO USAREMOS EL CMD DE GIT
+-Sistema de control de versiones distribuidos. Esto ultimo se refiere a que el codigo se puede manjera de varios pc
+    + Nos permite llevar un historial de los cambios que se lleven en los proyectos
+    + Documentar y trazar todo lo relativo a un proyecto
+    + Podemos volver a versiones anteriores
+
+*** CREAR UN FICHERO CON CMD type nul > your_file.txt
+
+- Para configurar git necesitamos un user name y un correo
+- git config --global user.name "Felipe"
+- git config --global user.email "f.nova89@gmail.com"
+- git config --global alias
+- Despues en el cmd dentro del directorio que estamos trabajando ecribir git init
+    + Esto crea una carpeta oculta .git en el directorio
+    + Aca ya creamos un repositorio y control de versiones
+- ejecutamos git branch -m main para cambiar el nombre de master a main
+
+GIT EN VSCODE https://www.digitalocean.com/community/tutorials/how-to-use-git-integration-in-visual-studio-code-es
+
+
+COMANDOS
+- git init
+- git status -> nos muestra los ficheros dentro de la carpeta que estamos trabajando y que le pusimos nombre main
+    + Ficheros pueden o no estar dentro de git
+    + ademas nos muestra si hay commit hechos con los archivos
+    + Ademas muestra los ficheros ya existentes dentro de git que han sido modificados
+- git add nombre_archivo -> agrega un fichero a git
+    + git add . agrega todos los ficheros pendientes
+- git commit - m "nombre de la version" -> sacamos una fotografia de los archivos que hayamos agreggado a git con git add
+    + Cada commit que hagamos tendrá un codigo, que podremos usar para movernos entre ellos
+- git log -> nos muestra todos los commit que se han hecho, junto con su fecha, usuario que lo hizo, ejecutamos
+    + para salir de git log apretar "q"
+- git checkout nombre_archivo-> situarnos en punto concreto de una fotografia
+    + Retroceder a alguna version que le hayamos hecho un commit
+- git reset -> nos situa a todos nuetros archivos en git a la ultima version que hayamos hecho un commit
+- git log -> nos muestra el historial de las fotografias(commit) que hemos hecho
+    + git log --graph --pretty=oneline nos muestra en una linea los cambios
+    + git log --graph --decorate --all --oneline 
+- git config --global alias.nombre "log --graph --decorate --all --oneline"
+    + Despues puedo escribir: git nombre -> y se ejecuta lo anterior
+- IGNORE: ignora los archivos que no quiero haceres fotografias
+    + primero creamos un fichero dentro de la carpeta = .gitignore -->en cmd se hace:  type nul > .gitignore
+    + dentro del fichero en vscode agregamos los ficheros que no queramos trabajar con ellos
+    + escribimos los ficheros asi: **/contrasenas.py
+    + Importante es agregar y commit este nuevo archivo creado(git add .gitignore; git commit -m "se añade gitignore")
+- git diff -> muestra las diferencias que hay entre el fichero que estoy trabajando con el ultimo commit de ese fichero
+    + git diff nombre_fichero vemos la diferencia del fichero en especifico
+
+
+DESPLAZAMIENTO ENTRE RAMAS
+- Primero veamos los log: git log
+    + Aca aparcera todos los commit hechos, cada commit tiene un id, con numeros y letras
+- Si escribimos git checkout id_commit nos iremos a lo que estaba guardado en ese commit
+    - Si retrocedemos al primer commit se borraran todos el codigo y archivos creados hazta el commit que nos desplazams
+    - Tb podemos hacer el checkout hacia adelante para volver a la ultima version que teniamos guardada, con lo cual se restauraran los archivos y codigo
+    - git checkout HEAD: Importante si nos cambiamos de commit, ejecutar este codigo para que git sepa que con este commit estaremos trabajando ahora
+
+CONTINUACION COMANDOS
+- git reset --hard id_commit -> Sirve para desplazarse para adelante o atras, si es atras se "eliminan" casi de forma indefinida commits
+    + id_commit sera a la version al cual nos desplazaremos, todas las que era posteriores a esta version se "eliminaran"
+    + HEAD queda en esta version
+- git reglog   -> Nos muestra el historial completo de interacciones
+    + Aca apareceran todos los commits, aunque se hayan "elimnado" con reset hard
+- git reset --hard id_commit  -> Si ponemos el id_commit a uno posterior que habia sido "eliminado" nos moveremos nuevamente hacia el
+    + Se volveran a crear todos los archivos y codigos guardadso en ese commit
+    + El head quedara en este commit
+- git tag nombre -> etiqueta, se utiliza para hacer referencias a puntos importantes(commits importantes) = versiones
+    + Por lo cual el ultimo commit quedara con un nombre = tag
+    + Los commits siguientes ya no tendra el tag
+- git tag  -> muestra los tag creados
+    + para desplazarnos entre tags: git checkout tags/nombre_tag
+    + Se mueve el HEAD automaticamente a este 
+- git checkout main -> volvemos al commit que sea main(se ve git log), general% es el ultimo crado
+- git branch "nombre" -> Se usa cuando queremos hacer algo que no tiene sentido de hacer en la rama que estamos
+    + Se crea otra rama a partir de la rama de la que la creamos
+    + Esto permite trabajar en otros sin afectar la rama principal o una rama terminada
+- git switch nombre  -> nombre debe ser de una rama ya existentes
+    + Esto sirve para moverse entre RAMAS
+- git merge "branch"  -> permite ver el progreso de otras ramas
+    + "branch" debe ser una rama ya creada
+    + trae los datos de la otra rama hacia la rama donde uno este
+- git stash sirve para guardar temporalmente el trabajo, es diferente al commit
+    + queda solo gaurdado en local
+    + No afecta al arbol
+    + git stash list -> muestra todos los stash guardados(no se si pueden ser mas de uno)
+    + git stash pop  -> No devuelve el ultimo stash guardado
+    + git stash drop -> elimna el stash guardado
+- git branch -d nombre_rama  -> Elimina una rama
+    + Lo idea es eliminar cuando ya ese trabajo temporal se termino y se paso al main con merge
+    + Cuando hacemos el merge, todos los commit de esa rama se iran a la rama main
+    
+
+CONFLICTOS EN GIT
+- AL dos equipos cambiar mismas lineas de codigo y si queremos hace run merge, git nos dar la opcion de elegir
+cual de las dos opciones elegimos
+
